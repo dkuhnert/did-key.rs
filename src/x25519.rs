@@ -57,7 +57,7 @@ impl KeyMaterial for X25519KeyPair {
     }
 
     fn private_key_bytes(&self) -> Vec<u8> {
-        self.secret_key.as_ref().unwrap().to_bytes().to_vec()
+        self.secret_key.as_ref().map_or(vec![], |x| x.to_bytes().to_vec())
     }
 }
 
